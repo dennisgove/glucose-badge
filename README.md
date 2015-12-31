@@ -7,7 +7,7 @@ glucose-badge is based off of work done by [Nathan Racklyeft](https://github.com
 %> pod install
 ```
 
-This will install the xDripG5 and create a workspace for you. Then open the workspace (NOT the project) via
+This will install the xDripG5 and create a workspace for you. Then open the workspace (**not** the project) via
 ```
 $> open glucose-badge.xcworkspace/
 ```
