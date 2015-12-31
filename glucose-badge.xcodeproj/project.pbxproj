@@ -26,7 +26,6 @@
 		9593CE471C135D1600D45B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9593CE491C135D1600D45B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9593CE4F1C13686A00D45B22 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
-		9593CE7C1C1370CA00D45B22 /* glucose-badge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "glucose-badge-Bridging-Header.h"; sourceTree = "<group>"; };
 		D59996DF47C494AD554AD76F /* Pods_glucose_badge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_glucose_badge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E797AC358A0F7EC8512B0C3E /* Pods-glucose-badge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glucose-badge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-glucose-badge/Pods-glucose-badge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,7 +79,6 @@
 				9593CE461C135D1600D45B22 /* LaunchScreen.storyboard */,
 				9593CE491C135D1600D45B22 /* Info.plist */,
 				9593CE4F1C13686A00D45B22 /* NSUserDefaults.swift */,
-				9593CE7C1C1370CA00D45B22 /* glucose-badge-Bridging-Header.h */,
 			);
 			path = "glucose-badge";
 			sourceTree = "<group>";
@@ -341,7 +339,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gove.glucose-badge";
 				PRODUCT_NAME = "glucose-badge";
-				SWIFT_OBJC_BRIDGING_HEADER = "glucose-badge/glucose-badge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -357,7 +355,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gove.glucose-badge";
 				PRODUCT_NAME = "glucose-badge";
-				SWIFT_OBJC_BRIDGING_HEADER = "glucose-badge/glucose-badge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
