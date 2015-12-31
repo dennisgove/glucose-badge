@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreBluetooth
+import xDripG5
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
