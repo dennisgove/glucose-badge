@@ -13,10 +13,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var transmitterIdField: UITextField!
     @IBOutlet weak var showOnBadgeSwitch: UISwitch!
     @IBOutlet weak var showOnLockScreenSwitch: UISwitch!
+    @IBOutlet weak var mostRecentValue: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        mostRecentValue.text = "???"
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +27,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func displayMostRecentValue(value: Int){
+        mostRecentValue.text = String(value)
+    }
 
 }
 

@@ -13,6 +13,8 @@ import xDripG5
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
+    var IS_TEST = true
+
     var window: UIWindow?
     var app: UIApplication!
     var transmitter: Transmitter?
@@ -20,11 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.app = application
 
-        transmitter = Transmitter(
-            ID: NSUserDefaults.standardUserDefaults().transmitterId,
-            startTimeInterval: nil,
-            passiveModeEnabled: true
-        )
+        transmitter = self.createTransmitter()
         transmitter?.stayConnected = true
         transmitter?.delegate = self
 
@@ -39,13 +37,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         return true
     }
 
+    func createTransmitter() -> Transmitter? {
+        if(IS_TEST){
+            return StaticTestTransmitter(
+                transmitterId: NSUserDefaults.standardUserDefaults().transmitterId,
+                valueChangeInterval: 5,
+                staticValues: [70, 73, 85, 83, 100]
+            )
+        }
+        else{
+            return G5Transmitter(
+                transmitterId: NSUserDefaults.standardUserDefaults().transmitterId,
+                passiveModeEnabled: true
+            )
+        }
+    }
+
 
     func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage){
         app.applicationIconBadgeNumber = Int(glucose.glucose)
+
+        if let viewController = self.window?.rootViewController as? ViewController {
+            viewController.displayMostRecentValue(Int(glucose.glucose))
+        }
     }
 
     func transmitter(transmitter: Transmitter, didError error: ErrorType){
         app.applicationIconBadgeNumber = -1
+
+        if let viewController = self.window?.rootViewController as? ViewController {
+            viewController.displayMostRecentValue(-1)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -56,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -68,6 +91,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        // Because we support background execution this method is never called. Why? I dunno (seems kinda stupid not to call this on exit).
+        // Instead, applicationDidEnterBackground: is called on user exit.
+
+        // Clear the badge value when the app stops running
+        app.applicationIconBadgeNumber = -1
+
+        if let viewController = self.window?.rootViewController as? ViewController {
+            viewController.displayMostRecentValue(-1)
+        }
     }
 
 

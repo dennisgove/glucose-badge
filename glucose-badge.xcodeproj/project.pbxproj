@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		65FE24237AAAEA4600318C88 /* Pods_glucose_badge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59996DF47C494AD554AD76F /* Pods_glucose_badge.framework */; };
+		951A9F9A1C4864A800A486BF /* StaticTestTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951A9F991C4864A800A486BF /* StaticTestTransmitter.swift */; };
 		9593CE3E1C135D1600D45B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593CE3D1C135D1600D45B22 /* AppDelegate.swift */; };
 		9593CE401C135D1600D45B22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593CE3F1C135D1600D45B22 /* ViewController.swift */; };
 		9593CE431C135D1600D45B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9593CE411C135D1600D45B22 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		74F4CB503FB8269984F1277D /* Pods-glucose-badge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glucose-badge.release.xcconfig"; path = "Pods/Target Support Files/Pods-glucose-badge/Pods-glucose-badge.release.xcconfig"; sourceTree = "<group>"; };
+		951A9F991C4864A800A486BF /* StaticTestTransmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticTestTransmitter.swift; sourceTree = "<group>"; };
 		9593CE3A1C135D1600D45B22 /* glucose-badge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "glucose-badge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9593CE3D1C135D1600D45B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9593CE3F1C135D1600D45B22 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				9593CE461C135D1600D45B22 /* LaunchScreen.storyboard */,
 				9593CE491C135D1600D45B22 /* Info.plist */,
 				9593CE4F1C13686A00D45B22 /* NSUserDefaults.swift */,
+				951A9F991C4864A800A486BF /* StaticTestTransmitter.swift */,
 			);
 			path = "glucose-badge";
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				9593CE401C135D1600D45B22 /* ViewController.swift in Sources */,
 				9593CE3E1C135D1600D45B22 /* AppDelegate.swift in Sources */,
 				9593CE501C13686A00D45B22 /* NSUserDefaults.swift in Sources */,
+				951A9F9A1C4864A800A486BF /* StaticTestTransmitter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +338,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "glucose-badge/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -350,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "glucose-badge/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
