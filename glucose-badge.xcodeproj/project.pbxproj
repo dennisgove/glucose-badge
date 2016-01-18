@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		65FE24237AAAEA4600318C88 /* Pods_glucose_badge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59996DF47C494AD554AD76F /* Pods_glucose_badge.framework */; };
+		954A962E1C4D57210018C878 /* Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A962D1C4D57210018C878 /* Receiver.swift */; };
+		954A96301C4D5EF20018C878 /* ReceiverNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A962F1C4D5EF20018C878 /* ReceiverNotificationDelegate.swift */; };
+		954A96321C4D5FA20018C878 /* StaticValuesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */; };
+		954A96341C4D652B0018C878 /* Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A96331C4D652B0018C878 /* Reading.swift */; };
 		9593CE3E1C135D1600D45B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593CE3D1C135D1600D45B22 /* AppDelegate.swift */; };
 		9593CE401C135D1600D45B22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593CE3F1C135D1600D45B22 /* ViewController.swift */; };
 		9593CE431C135D1600D45B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9593CE411C135D1600D45B22 /* Main.storyboard */; };
@@ -18,6 +22,10 @@
 
 /* Begin PBXFileReference section */
 		74F4CB503FB8269984F1277D /* Pods-glucose-badge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glucose-badge.release.xcconfig"; path = "Pods/Target Support Files/Pods-glucose-badge/Pods-glucose-badge.release.xcconfig"; sourceTree = "<group>"; };
+		954A962D1C4D57210018C878 /* Receiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receiver.swift; sourceTree = "<group>"; };
+		954A962F1C4D5EF20018C878 /* ReceiverNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiverNotificationDelegate.swift; sourceTree = "<group>"; };
+		954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticValuesReceiver.swift; sourceTree = "<group>"; };
+		954A96331C4D652B0018C878 /* Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reading.swift; sourceTree = "<group>"; };
 		9593CE3A1C135D1600D45B22 /* glucose-badge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "glucose-badge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9593CE3D1C135D1600D45B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9593CE3F1C135D1600D45B22 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +59,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		954A962C1C4D56BD0018C878 /* transmitters */ = {
+			isa = PBXGroup;
+			children = (
+				954A962D1C4D57210018C878 /* Receiver.swift */,
+				954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */,
+				954A962F1C4D5EF20018C878 /* ReceiverNotificationDelegate.swift */,
+				954A96331C4D652B0018C878 /* Reading.swift */,
+			);
+			name = transmitters;
+			sourceTree = "<group>";
+		};
 		9593CE311C135D1600D45B22 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +91,7 @@
 		9593CE3C1C135D1600D45B22 /* glucose-badge */ = {
 			isa = PBXGroup;
 			children = (
+				954A962C1C4D56BD0018C878 /* transmitters */,
 				9593CE3D1C135D1600D45B22 /* AppDelegate.swift */,
 				9593CE3F1C135D1600D45B22 /* ViewController.swift */,
 				9593CE411C135D1600D45B22 /* Main.storyboard */,
@@ -219,8 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954A96321C4D5FA20018C878 /* StaticValuesReceiver.swift in Sources */,
+				954A96341C4D652B0018C878 /* Reading.swift in Sources */,
+				954A96301C4D5EF20018C878 /* ReceiverNotificationDelegate.swift in Sources */,
 				9593CE401C135D1600D45B22 /* ViewController.swift in Sources */,
 				9593CE3E1C135D1600D45B22 /* AppDelegate.swift in Sources */,
+				954A962E1C4D57210018C878 /* Receiver.swift in Sources */,
 				9593CE501C13686A00D45B22 /* NSUserDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
