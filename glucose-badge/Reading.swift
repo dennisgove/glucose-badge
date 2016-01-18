@@ -9,7 +9,7 @@
 import Foundation
 
 internal struct Reading {
-    var value: UInt16?
+    var value: UInt16
     var timestamp: NSDate
 
     internal init(value: UInt16, timestamp: NSDate){

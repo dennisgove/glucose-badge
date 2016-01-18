@@ -7,26 +7,19 @@
 //
 
 import UIKit
-import CoreBluetooth
-import xDripG5
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ReceiverNotificationDelegate {
 
     var window: UIWindow?
     var app: UIApplication!
-    var transmitter: Transmitter?
+    var receiver: Receiver?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.app = application
-
-        transmitter = Transmitter(
-            ID: NSUserDefaults.standardUserDefaults().transmitterId,
-            startTimeInterval: nil,
-            passiveModeEnabled: true
-        )
-        transmitter?.stayConnected = true
-        transmitter?.delegate = self
+        self.receiver = createReceiver()
+        self.receiver?.readingNotifier = self
+        self.receiver?.connect()
 
         self.resignFirstResponder()
 
@@ -39,13 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         return true
     }
 
-
-    func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage){
-        app.applicationIconBadgeNumber = Int(glucose.glucose)
+    private func createReceiver() -> Receiver? {
+        return StaticValuesReceiver(
+            readings: [Reading(value:70, timestamp:NSDate()), Reading(value:80, timestamp:NSDate())],
+            valueChangeInterval: 2.5
+        )
     }
 
-    func transmitter(transmitter: Transmitter, didError error: ErrorType){
-        app.applicationIconBadgeNumber = -1
+    func receiver(receiver: Receiver, didReceiveReading: Reading) {
+        app.applicationIconBadgeNumber = Int(didReceiveReading.value)
     }
 
     func applicationWillResignActive(application: UIApplication) {

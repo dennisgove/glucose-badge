@@ -13,7 +13,7 @@ import Foundation
 //
 // TODO: Move this into a standard swift testing set
 
-class StaticValuesReceiver : Receiver {
+class StaticValuesReceiver : NSObject, Receiver {
 
     private var notifier: ReceiverNotificationDelegate?
     private var readings: [Reading]?
@@ -25,6 +25,14 @@ class StaticValuesReceiver : Receiver {
         self.readings = readings
         self.valueChangeInterval = valueChangeInterval
         self.nextValueIdx = 0
+    }
+
+
+    func sendNextValue() {
+        if(nil != notifier && nil != readings){
+            notifier?.receiver(self, didReceiveReading: readings![nextValueIdx])
+            nextValueIdx = (nextValueIdx + 1) % readings!.count
+        }
     }
 
     // Begin sending values through the notifier
@@ -53,13 +61,6 @@ class StaticValuesReceiver : Receiver {
     var readingNotifier: ReceiverNotificationDelegate? {
         get{ return self.notifier }
         set{ self.notifier = newValue }
-    }
-
-    private func sendNextValue() {
-        if(nil != notifier && nil != readings){
-            notifier?.receiver(self, didReceiveReading: readings![nextValueIdx])
-            nextValueIdx = (nextValueIdx + 1) % readings!.count
-        }
     }
 
 }
