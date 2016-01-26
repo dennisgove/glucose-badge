@@ -27,20 +27,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReceiverNotificationDeleg
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil))
 
         // Clear any previous value there
-        application.applicationIconBadgeNumber = -1
-        
+        // This is done in the viewDidLoad method of the ViewController
+
         return true
     }
 
     private func createReceiver() -> Receiver? {
-        return StaticValuesReceiver(
-            readings: [Reading(value:70, timestamp:NSDate()), Reading(value:80, timestamp:NSDate())],
-            valueChangeInterval: 2.5
-        )
+
+//        return StaticValuesReceiver(
+//            readings: [Reading(value:70, timestamp:NSDate()), Reading(value:80, timestamp:NSDate())],
+//            valueChangeInterval: 2.5
+//        )
+
+        return xDripG5Receiver(transmitterId: NSUserDefaults.standardUserDefaults().transmitterId)
+    }
+
+    private func updateGlucose(reading: Reading){
+        app.applicationIconBadgeNumber = Int(reading.value)
+
+        let vc = self.window!.rootViewController as! ViewController
+        vc.setMostRecent(reading)
     }
 
     func receiver(receiver: Receiver, didReceiveReading: Reading) {
-        app.applicationIconBadgeNumber = Int(didReceiveReading.value)
+        updateGlucose(didReceiveReading)
+//        app.applicationIconBadgeNumber = Int(didReceiveReading.value)
+    }
+
+    func receiver(receiver: Receiver, didExperienceError: ErrorType) {
+        updateGlucose(Reading(value:11, timestamp: NSDate()))
+//        app.applicationIconBadgeNumber = 11
     }
 
     func applicationWillResignActive(application: UIApplication) {

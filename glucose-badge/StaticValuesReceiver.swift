@@ -10,8 +10,6 @@ import Foundation
 
 // Implements a receiver which will iterate through a list of static
 // values at some fixed rate. This can be used for testing purposes.
-//
-// TODO: Move this into a standard swift testing set
 
 class StaticValuesReceiver : NSObject, Receiver {
 
@@ -30,7 +28,9 @@ class StaticValuesReceiver : NSObject, Receiver {
 
     func sendNextValue() {
         if(nil != notifier && nil != readings){
-            notifier?.receiver(self, didReceiveReading: readings![nextValueIdx])
+            var reading = readings![nextValueIdx]
+            reading.timestamp = NSDate()
+            notifier?.receiver(self, didReceiveReading: reading)
             nextValueIdx = (nextValueIdx + 1) % readings!.count
         }
     }

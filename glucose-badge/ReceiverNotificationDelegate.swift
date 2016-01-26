@@ -10,12 +10,6 @@ import Foundation
 
 protocol ReceiverNotificationDelegate: class {
     func receiver(receiver: Receiver, didReceiveReading: Reading)
-
-    // TODO: decide if we need a designated error callback. Perhaps Reading can
-    // become a protocol that can have GlucoseReading and ErrorReading
-//    func receiver(receiver: Receiver, didReceiverError: ReceiverError)
-
-//    func communicationLost(receiver: Receiver)
-
-//    func communicationGained(receiver: Receiver)
+    func receiver(receiver: Receiver, didExperienceError: ErrorType)
+//    func receiver(receiver: Receiver, failedToReceiveReadingAfterSeconds: Int)
 }

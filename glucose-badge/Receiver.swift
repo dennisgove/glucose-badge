@@ -18,6 +18,13 @@ protocol Receiver : class {
     // If already closed then considered a no-op
     func disconnect() -> Bool
 
+    // Max # of seconds to wait for a reading. If haven't gotten a new reading
+    // within this timeframe then notify the client
+//    var maxReadingWait: Int {
+//        get
+//        set
+//    }
+
     var readingNotifier: ReceiverNotificationDelegate? {
         get
         set

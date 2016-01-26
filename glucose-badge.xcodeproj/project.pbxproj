@@ -12,6 +12,8 @@
 		954A96301C4D5EF20018C878 /* ReceiverNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A962F1C4D5EF20018C878 /* ReceiverNotificationDelegate.swift */; };
 		954A96321C4D5FA20018C878 /* StaticValuesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */; };
 		954A96341C4D652B0018C878 /* Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A96331C4D652B0018C878 /* Reading.swift */; };
+		9564C3401C51AE0B00F11BD4 /* glucose_badgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564C33F1C51AE0B00F11BD4 /* glucose_badgeTests.swift */; };
+		9564C3481C51AE8E00F11BD4 /* xDripG5Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9564C3471C51AE8E00F11BD4 /* xDripG5Receiver.swift */; };
 		9593CE3E1C135D1600D45B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593CE3D1C135D1600D45B22 /* AppDelegate.swift */; };
 		9593CE401C135D1600D45B22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593CE3F1C135D1600D45B22 /* ViewController.swift */; };
 		9593CE431C135D1600D45B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9593CE411C135D1600D45B22 /* Main.storyboard */; };
@@ -20,12 +22,26 @@
 		9593CE501C13686A00D45B22 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9593CE4F1C13686A00D45B22 /* NSUserDefaults.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9564C3421C51AE0B00F11BD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9593CE321C135D1600D45B22 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9593CE391C135D1600D45B22;
+			remoteInfo = "glucose-badge";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		74F4CB503FB8269984F1277D /* Pods-glucose-badge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-glucose-badge.release.xcconfig"; path = "Pods/Target Support Files/Pods-glucose-badge/Pods-glucose-badge.release.xcconfig"; sourceTree = "<group>"; };
 		954A962D1C4D57210018C878 /* Receiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receiver.swift; sourceTree = "<group>"; };
 		954A962F1C4D5EF20018C878 /* ReceiverNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiverNotificationDelegate.swift; sourceTree = "<group>"; };
-		954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticValuesReceiver.swift; sourceTree = "<group>"; };
+		954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticValuesReceiver.swift; path = "../glucose-badge/StaticValuesReceiver.swift"; sourceTree = "<group>"; };
 		954A96331C4D652B0018C878 /* Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reading.swift; sourceTree = "<group>"; };
+		9564C33D1C51AE0B00F11BD4 /* glucose-badgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "glucose-badgeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9564C33F1C51AE0B00F11BD4 /* glucose_badgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = glucose_badgeTests.swift; sourceTree = "<group>"; };
+		9564C3411C51AE0B00F11BD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9564C3471C51AE8E00F11BD4 /* xDripG5Receiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xDripG5Receiver.swift; sourceTree = "<group>"; };
 		9593CE3A1C135D1600D45B22 /* glucose-badge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "glucose-badge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9593CE3D1C135D1600D45B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9593CE3F1C135D1600D45B22 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +55,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9564C33A1C51AE0B00F11BD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9593CE371C135D1600D45B22 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,21 +82,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		954A962C1C4D56BD0018C878 /* transmitters */ = {
+		954A962C1C4D56BD0018C878 /* receivers */ = {
 			isa = PBXGroup;
 			children = (
 				954A962D1C4D57210018C878 /* Receiver.swift */,
-				954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */,
 				954A962F1C4D5EF20018C878 /* ReceiverNotificationDelegate.swift */,
 				954A96331C4D652B0018C878 /* Reading.swift */,
+				9564C3471C51AE8E00F11BD4 /* xDripG5Receiver.swift */,
 			);
-			name = transmitters;
+			name = receivers;
+			sourceTree = "<group>";
+		};
+		9564C33E1C51AE0B00F11BD4 /* glucose-badgeTests */ = {
+			isa = PBXGroup;
+			children = (
+				954A96311C4D5FA20018C878 /* StaticValuesReceiver.swift */,
+				9564C33F1C51AE0B00F11BD4 /* glucose_badgeTests.swift */,
+				9564C3411C51AE0B00F11BD4 /* Info.plist */,
+			);
+			path = "glucose-badgeTests";
 			sourceTree = "<group>";
 		};
 		9593CE311C135D1600D45B22 = {
 			isa = PBXGroup;
 			children = (
 				9593CE3C1C135D1600D45B22 /* glucose-badge */,
+				9564C33E1C51AE0B00F11BD4 /* glucose-badgeTests */,
 				9593CE3B1C135D1600D45B22 /* Products */,
 				2BE676AAFD31286475FE5066 /* Pods */,
 				AB39DCBB1676F0FC95BD3379 /* Frameworks */,
@@ -84,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				9593CE3A1C135D1600D45B22 /* glucose-badge.app */,
+				9564C33D1C51AE0B00F11BD4 /* glucose-badgeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,7 +126,7 @@
 		9593CE3C1C135D1600D45B22 /* glucose-badge */ = {
 			isa = PBXGroup;
 			children = (
-				954A962C1C4D56BD0018C878 /* transmitters */,
+				954A962C1C4D56BD0018C878 /* receivers */,
 				9593CE3D1C135D1600D45B22 /* AppDelegate.swift */,
 				9593CE3F1C135D1600D45B22 /* ViewController.swift */,
 				9593CE411C135D1600D45B22 /* Main.storyboard */,
@@ -114,6 +149,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9564C33C1C51AE0B00F11BD4 /* glucose-badgeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9564C3441C51AE0B00F11BD4 /* Build configuration list for PBXNativeTarget "glucose-badgeTests" */;
+			buildPhases = (
+				9564C3391C51AE0B00F11BD4 /* Sources */,
+				9564C33A1C51AE0B00F11BD4 /* Frameworks */,
+				9564C33B1C51AE0B00F11BD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9564C3431C51AE0B00F11BD4 /* PBXTargetDependency */,
+			);
+			name = "glucose-badgeTests";
+			productName = "glucose-badgeTests";
+			productReference = 9564C33D1C51AE0B00F11BD4 /* glucose-badgeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9593CE391C135D1600D45B22 /* glucose-badge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9593CE4C1C135D1600D45B22 /* Build configuration list for PBXNativeTarget "glucose-badge" */;
@@ -140,10 +193,15 @@
 		9593CE321C135D1600D45B22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = gove;
 				TargetAttributes = {
+					9564C33C1C51AE0B00F11BD4 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9K88TG93V6;
+						TestTargetID = 9593CE391C135D1600D45B22;
+					};
 					9593CE391C135D1600D45B22 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 9K88TG93V6;
@@ -169,11 +227,19 @@
 			projectRoot = "";
 			targets = (
 				9593CE391C135D1600D45B22 /* glucose-badge */,
+				9564C33C1C51AE0B00F11BD4 /* glucose-badgeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9564C33B1C51AE0B00F11BD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9593CE381C135D1600D45B22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,10 +301,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9564C3391C51AE0B00F11BD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9564C3401C51AE0B00F11BD4 /* glucose_badgeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9593CE361C135D1600D45B22 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9564C3481C51AE8E00F11BD4 /* xDripG5Receiver.swift in Sources */,
 				954A96321C4D5FA20018C878 /* StaticValuesReceiver.swift in Sources */,
 				954A96341C4D652B0018C878 /* Reading.swift in Sources */,
 				954A96301C4D5EF20018C878 /* ReceiverNotificationDelegate.swift in Sources */,
@@ -250,6 +325,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9564C3431C51AE0B00F11BD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9593CE391C135D1600D45B22 /* glucose-badge */;
+			targetProxy = 9564C3421C51AE0B00F11BD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9593CE411C135D1600D45B22 /* Main.storyboard */ = {
@@ -271,6 +354,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9564C3451C51AE0B00F11BD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "glucose-badgeTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gove.glucose-badgeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/glucose-badge.app/glucose-badge";
+			};
+			name = Debug;
+		};
+		9564C3461C51AE0B00F11BD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "glucose-badgeTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gove.glucose-badgeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/glucose-badge.app/glucose-badge";
+			};
+			name = Release;
+		};
 		9593CE4A1C135D1600D45B22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -386,6 +495,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9564C3441C51AE0B00F11BD4 /* Build configuration list for PBXNativeTarget "glucose-badgeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9564C3451C51AE0B00F11BD4 /* Debug */,
+				9564C3461C51AE0B00F11BD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9593CE351C135D1600D45B22 /* Build configuration list for PBXProject "glucose-badge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
