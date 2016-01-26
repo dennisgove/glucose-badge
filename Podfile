@@ -4,6 +4,6 @@ platform :ios, '9.2'
 use_frameworks!
 
 target 'glucose-badge' do
-  pod "xDripG5"
+  pod "xDripG5", '~> 0.2.0'
 end
 
