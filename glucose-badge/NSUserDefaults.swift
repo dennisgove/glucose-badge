@@ -11,28 +11,10 @@ import Foundation
 extension NSUserDefaults {
     var transmitterId: String {
         get {
-            return stringForKey("transmitterId") ?? "4040UD"
+            return stringForKey("transmitterId") ?? "??????"
         }
         set {
             setObject(newValue, forKey: "transmitterId")
-        }
-    }
-
-    var showOnBadge: Bool {
-        get {
-            return boolForKey("showOnBadgeEnabled") ?? false
-        }
-        set {
-            setBool(newValue, forKey: "showOnBadgeEnabled")
-        }
-    }
-
-    var showOnLockScreen: Bool {
-        get {
-            return boolForKey("showOnLockScreen") ?? false
-        }
-        set {
-            setBool(newValue, forKey: "showOnLockScreen")
         }
     }
 }

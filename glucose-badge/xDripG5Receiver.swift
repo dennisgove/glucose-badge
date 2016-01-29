@@ -34,11 +34,13 @@ class xDripG5Receiver: NSObject, Receiver, TransmitterDelegate {
 
     func connect() -> Bool {
         transmitter.resumeScanning()
+        sendCodedNotification(ReceiverCode.CONNECTED_WAITING_FOR_FIRST_READING)
         return true
     }
 
     func disconnect() -> Bool {
         transmitter.stopScanning()
+        sendCodedNotification(ReceiverCode.DISCONNECTED)
         return true
     }
 
@@ -49,9 +51,16 @@ class xDripG5Receiver: NSObject, Receiver, TransmitterDelegate {
         }
     }
 
+    func sendCodedNotification(code: ReceiverCode){
+        if(nil != notifier){
+            let reading = Reading(value:code.rawValue, timestamp:NSDate())
+            notifier!.receiver(self, didReceiveReading: reading)
+        }
+    }
+
     func transmitter(transmitter: Transmitter, didError error: ErrorType){
         if(nil != notifier){
-            notifier!.receiver(self, didExperienceError: error)
+            notifier!.receiver(self, didExperienceError: error, withReceiverCode: ReceiverCode.CONNECTED_LAST_READING_ERROR)
         }
     }
 }

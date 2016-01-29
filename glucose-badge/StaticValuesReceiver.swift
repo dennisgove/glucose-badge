@@ -39,11 +39,13 @@ class StaticValuesReceiver : NSObject, Receiver {
     // Returns false if no values exist to send or notifier is null
     func connect() -> Bool {
         if(nil == self.notifier || nil == self.readings || 0 == self.readings?.count){
+            sendCodedNotification(ReceiverCode.DISCONNECTED)
             return false
         }
 
         if(nil == valueSender){
             valueSender = NSTimer.scheduledTimerWithTimeInterval(valueChangeInterval, target: self, selector: "sendNextValue", userInfo: nil, repeats: true)
+            sendCodedNotification(ReceiverCode.CONNECTED_WAITING_FOR_FIRST_READING)
         }
         return true
     }
@@ -54,8 +56,16 @@ class StaticValuesReceiver : NSObject, Receiver {
         if(nil != valueSender){
             valueSender?.invalidate()
             valueSender = nil
+            sendCodedNotification(ReceiverCode.DISCONNECTED)
         }
         return true
+    }
+
+    func sendCodedNotification(code: ReceiverCode){
+        if(nil != notifier){
+            let reading = Reading(value:code.rawValue, timestamp:NSDate())
+            notifier!.receiver(self, didReceiveReading: reading)
+        }
     }
 
     var readingNotifier: ReceiverNotificationDelegate? {

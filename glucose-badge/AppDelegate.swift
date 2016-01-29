@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReceiverNotificationDeleg
     var app: UIApplication!
     var receiver: Receiver?
 
+    static var sharedDelegate: AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.app = application
-        self.receiver = createReceiver()
-        self.receiver?.readingNotifier = self
-        self.receiver?.connect()
 
         self.resignFirstResponder()
 
@@ -32,14 +33,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReceiverNotificationDeleg
         return true
     }
 
-    private func createReceiver() -> Receiver? {
+    internal func initializeReceiver(transmitterId: String){
+
+        if(nil != self.receiver){
+            self.receiver?.disconnect()
+        }
+
+        NSUserDefaults.standardUserDefaults().transmitterId = transmitterId
+        self.receiver = createReceiver(transmitterId)
+        self.receiver?.readingNotifier = self
+        self.receiver?.connect()
+    }
+
+    private func createReceiver(transmitterId: String) -> Receiver? {
 
 //        return StaticValuesReceiver(
 //            readings: [Reading(value:70, timestamp:NSDate()), Reading(value:80, timestamp:NSDate())],
-//            valueChangeInterval: 2.5
+//            valueChangeInterval: 10
 //        )
 
-        return xDripG5Receiver(transmitterId: NSUserDefaults.standardUserDefaults().transmitterId)
+        return xDripG5Receiver(transmitterId: transmitterId)
     }
 
     private func updateGlucose(reading: Reading){
@@ -54,9 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReceiverNotificationDeleg
 //        app.applicationIconBadgeNumber = Int(didReceiveReading.value)
     }
 
-    func receiver(receiver: Receiver, didExperienceError: ErrorType) {
-        updateGlucose(Reading(value:11, timestamp: NSDate()))
-//        app.applicationIconBadgeNumber = 11
+    func receiver(receiver: Receiver, didExperienceError: ErrorType, withReceiverCode: ReceiverCode) {
+        updateGlucose(Reading(value:withReceiverCode.rawValue, timestamp: NSDate()))
     }
 
     func applicationWillResignActive(application: UIApplication) {

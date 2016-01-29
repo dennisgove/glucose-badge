@@ -8,6 +8,12 @@
 
 import Foundation
 
+public enum ReceiverCode: UInt16 {
+    case CONNECTED_WAITING_FOR_FIRST_READING = 1
+    case CONNECTED_LAST_READING_ERROR = 2
+    case DISCONNECTED = 3
+}
+
 protocol Receiver : class {
 
     // Open conection with the underlying transmitter.
