@@ -18,6 +18,7 @@ class StaticValuesReceiver : NSObject, Receiver {
     private var valueChangeInterval: Double
     private var valueSender: NSTimer?
     private var nextValueIdx: Int
+    private var latestReading: Reading?
 
     internal init(readings: [Reading]?, valueChangeInterval: Double) {
         self.readings = readings
@@ -30,7 +31,8 @@ class StaticValuesReceiver : NSObject, Receiver {
         if(nil != notifier && nil != readings){
             var reading = readings![nextValueIdx]
             reading.timestamp = NSDate()
-            notifier?.receiver(self, didReceiveReading: reading)
+            latestReading = reading
+            sendReceiverEvent(ReceiverEventCode.CONNECTED_LAST_READING_GOOD, withLatestReading: latestReading)
             nextValueIdx = (nextValueIdx + 1) % readings!.count
         }
     }
@@ -39,13 +41,13 @@ class StaticValuesReceiver : NSObject, Receiver {
     // Returns false if no values exist to send or notifier is null
     func connect() -> Bool {
         if(nil == self.notifier || nil == self.readings || 0 == self.readings?.count){
-            sendCodedNotification(ReceiverCode.DISCONNECTED)
+            sendReceiverEvent(ReceiverEventCode.DISCONNECTED, withLatestReading: latestReading)
             return false
         }
 
         if(nil == valueSender){
             valueSender = NSTimer.scheduledTimerWithTimeInterval(valueChangeInterval, target: self, selector: "sendNextValue", userInfo: nil, repeats: true)
-            sendCodedNotification(ReceiverCode.CONNECTED_WAITING_FOR_FIRST_READING)
+            sendReceiverEvent(ReceiverEventCode.CONNECTED_WAITING_FOR_FIRST_READING, withLatestReading: latestReading)
         }
         return true
     }
@@ -56,15 +58,14 @@ class StaticValuesReceiver : NSObject, Receiver {
         if(nil != valueSender){
             valueSender?.invalidate()
             valueSender = nil
-            sendCodedNotification(ReceiverCode.DISCONNECTED)
+            sendReceiverEvent(ReceiverEventCode.DISCONNECTED, withLatestReading: latestReading)
         }
         return true
     }
 
-    func sendCodedNotification(code: ReceiverCode){
+    func sendReceiverEvent(eventCode: ReceiverEventCode, withLatestReading: Reading?){
         if(nil != notifier){
-            let reading = Reading(value:code.rawValue, timestamp:NSDate())
-            notifier!.receiver(self, didReceiveReading: reading)
+            notifier!.receiver(self, hadEvent: eventCode, withLatestReading: withLatestReading)
         }
     }
 

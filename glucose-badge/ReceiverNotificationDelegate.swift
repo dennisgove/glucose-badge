@@ -9,7 +9,5 @@
 import Foundation
 
 protocol ReceiverNotificationDelegate: class {
-    func receiver(receiver: Receiver, didReceiveReading: Reading)
-    func receiver(receiver: Receiver, didExperienceError: ErrorType, withReceiverCode: ReceiverCode)
-//    func receiver(receiver: Receiver, failedToReceiveReadingAfterSeconds: Int)
+    func receiver(receiver: Receiver, hadEvent: ReceiverEventCode, withLatestReading: Reading?)
 }

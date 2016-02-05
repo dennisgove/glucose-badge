@@ -55,20 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReceiverNotificationDeleg
         return xDripG5Receiver(transmitterId: transmitterId)
     }
 
-    private func updateGlucose(reading: Reading){
-        app.applicationIconBadgeNumber = Int(reading.value)
+    func receiver(receiver: Receiver, hadEvent: ReceiverEventCode, withLatestReading: Reading?){
+
+        if(nil != withLatestReading && ReceiverEventCode.CONNECTED_LAST_READING_GOOD == hadEvent){
+            app.applicationIconBadgeNumber = Int(withLatestReading!.value)
+        }
+        else{
+            app.applicationIconBadgeNumber = 0
+        }
 
         let vc = self.window!.rootViewController as! ViewController
-        vc.setMostRecent(reading)
-    }
-
-    func receiver(receiver: Receiver, didReceiveReading: Reading) {
-        updateGlucose(didReceiveReading)
-//        app.applicationIconBadgeNumber = Int(didReceiveReading.value)
-    }
-
-    func receiver(receiver: Receiver, didExperienceError: ErrorType, withReceiverCode: ReceiverCode) {
-        updateGlucose(Reading(value:withReceiverCode.rawValue, timestamp: NSDate()))
+        vc.handleReceiverEvent(hadEvent, withLatestReading: withLatestReading)
     }
 
     func applicationWillResignActive(application: UIApplication) {

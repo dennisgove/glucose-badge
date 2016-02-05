@@ -14,6 +14,9 @@ class xDripG5Receiver: NSObject, Receiver, TransmitterDelegate {
 
     private var transmitter: Transmitter!
     private var notifier: ReceiverNotificationDelegate?
+    private var latestReading: Reading?
+    private var disconnectTimer: NSTimer?
+    private final var xDripG5Timeout = (Double)(60 * 6) // we will allow 6 minutes before calling a disconnect
 
     internal init(transmitterId: String) {
         super.init()
@@ -25,6 +28,7 @@ class xDripG5Receiver: NSObject, Receiver, TransmitterDelegate {
         )
         transmitter?.stayConnected = true
         transmitter?.delegate = self
+
     }
 
     var readingNotifier: ReceiverNotificationDelegate? {
@@ -34,33 +38,50 @@ class xDripG5Receiver: NSObject, Receiver, TransmitterDelegate {
 
     func connect() -> Bool {
         transmitter.resumeScanning()
-        sendCodedNotification(ReceiverCode.CONNECTED_WAITING_FOR_FIRST_READING)
+        self.resetDisconnectTimer()
+        sendReceiverEvent(ReceiverEventCode.CONNECTED_WAITING_FOR_FIRST_READING, withLatestReading: latestReading)
         return true
     }
 
     func disconnect() -> Bool {
+        self.cancelDisconnectTimer()
         transmitter.stopScanning()
-        sendCodedNotification(ReceiverCode.DISCONNECTED)
+        sendReceiverEvent(ReceiverEventCode.DISCONNECTED, withLatestReading: latestReading)
         return true
     }
 
-    func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage){
-        if(nil != notifier){
-            let reading = Reading(value:glucose.glucose, timestamp:NSDate())
-            notifier!.receiver(self, didReceiveReading: reading)
+
+    private func cancelDisconnectTimer(){
+        if(nil != disconnectTimer){
+            disconnectTimer?.invalidate()
+            disconnectTimer = nil
         }
     }
 
-    func sendCodedNotification(code: ReceiverCode){
-        if(nil != notifier){
-            let reading = Reading(value:code.rawValue, timestamp:NSDate())
-            notifier!.receiver(self, didReceiveReading: reading)
-        }
+    private func resetDisconnectTimer(){
+        self.cancelDisconnectTimer()
+        disconnectTimer = NSTimer.scheduledTimerWithTimeInterval(xDripG5Timeout, target: self, selector: "handleDisconnect", userInfo: nil, repeats: false)
+    }
+
+    func handleDisconnect(){
+        sendReceiverEvent(ReceiverEventCode.LOST_CONNECTION, withLatestReading: latestReading)
+    }
+
+    func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage){
+        let reading = Reading(value:glucose.glucose, timestamp:NSDate())
+        latestReading = reading
+        self.resetDisconnectTimer()
+        self.sendReceiverEvent(ReceiverEventCode.CONNECTED_LAST_READING_GOOD, withLatestReading: latestReading)
     }
 
     func transmitter(transmitter: Transmitter, didError error: ErrorType){
+        self.resetDisconnectTimer()
+        self.sendReceiverEvent(ReceiverEventCode.CONNECTED_LAST_READING_ERROR, withLatestReading: latestReading)
+    }
+
+    func sendReceiverEvent(eventCode: ReceiverEventCode, withLatestReading: Reading?){
         if(nil != notifier){
-            notifier!.receiver(self, didExperienceError: error, withReceiverCode: ReceiverCode.CONNECTED_LAST_READING_ERROR)
+            notifier!.receiver(self, hadEvent: eventCode, withLatestReading: withLatestReading)
         }
     }
 }
